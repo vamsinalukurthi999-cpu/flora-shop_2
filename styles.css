@@ -1,0 +1,341 @@
+:root {
+    --primary-rose: #d6336c;
+    --primary-hover: #c2255c;
+    --primary-soft: #fff0f6;
+    --accent-sage: #2b8a3e;
+    --accent-sage-soft: #ebfbee;
+    --accent-gold: #f59f00;
+    --bg-warm: #faf7f5;
+    --card-bg: #ffffff;
+    --text-dark: #212529;
+    --text-muted: #6c757d;
+    --border-color: #ede2db;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 30px rgba(214, 51, 108, 0.15);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+body {
+    background-color: var(--bg-warm);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--primary-rose) !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #f783ac, #d6336c);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    box-shadow: 0 3px 10px rgba(214, 51, 108, 0.3);
+}
+
+.role-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.role-badge.Customer { background-color: #ffe3e3; color: #c92a2a; }
+.role-badge.Staff { background-color: #eebefa; color: #862e9c; }
+.role-badge.DeliveryPerson { background-color: #fff3bf; color: #d9480f; }
+.role-badge.Administrator { background-color: #d3f9d8; color: #2b8a3e; }
+
+/* Hero Banner */
+.hero-section {
+    background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 50%, #fcc2d7 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #fcc2d7;
+}
+.hero-section::after {
+    content: "🌸";
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-size: 10rem;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* Card Designs */
+.flower-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: white;
+    overflow: hidden;
+    transition: all 0.28s ease;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.flower-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: #f783ac;
+}
+.flower-img-wrap {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+    background-color: #f1f3f5;
+}
+.flower-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.flower-card:hover .flower-img-wrap img {
+    transform: scale(1.06);
+}
+.stock-pill {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+.stock-available { background-color: rgba(43, 138, 62, 0.9); color: white; }
+.stock-low { background-color: rgba(245, 159, 0, 0.92); color: white; }
+.stock-out { background-color: rgba(224, 49, 49, 0.92); color: white; }
+
+.category-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text-dark);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.price-tag {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-rose);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 0.35rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.status-order-placed { background-color: #e7f5ff; color: #1971c2; }
+.status-payment-confirmed { background-color: #dbe4ff; color: #3b5bdb; }
+.status-preparing { background-color: #fff3bf; color: #f08c00; }
+.status-out-for-delivery { background-color: #e3fafc; color: #0c8599; }
+.status-delivered { background-color: #ebfbee; color: #2f9e44; }
+.status-cancelled { background-color: #ffe3e3; color: #e03131; }
+
+/* Order Progress Stepper (Figure 5 State Diagram) */
+.order-stepper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 2rem 0;
+}
+.order-stepper::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background: #e9ecef;
+    z-index: 1;
+}
+.step-item {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+.step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    font-size: 1rem;
+    color: #868e96;
+    transition: all 0.3s ease;
+}
+.step-item.active .step-circle {
+    border-color: var(--primary-rose);
+    background: var(--primary-rose);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.2);
+}
+.step-item.completed .step-circle {
+    border-color: var(--accent-sage);
+    background: var(--accent-sage);
+    color: white;
+}
+.step-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Dashboard Metric Cards */
+.kpi-card {
+    border-radius: var(--radius-md);
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: transform 0.2s ease;
+}
+.kpi-card:hover {
+    transform: translateY(-3px);
+}
+.kpi-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+/* Invoice Styling (Page 14 Specification) */
+.invoice-container {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 2.2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.invoice-header {
+    border-bottom: 2px dashed #e9ecef;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+.invoice-summary-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--primary-rose);
+}
+
+/* Testing Console & Badges */
+.test-row {
+    transition: background 0.2s ease;
+}
+.test-row:hover {
+    background-color: #f8f9fa;
+}
+.test-pass {
+    background-color: #d3f9d8;
+    color: #2b8a3e;
+    font-weight: 700;
+}
+.test-fail {
+    background-color: #ffe3e3;
+    color: #c92a2a;
+    font-weight: 700;
+}
+
+/* Modal and Offcanvas Adjustments */
+.modal-content {
+    border-radius: var(--radius-lg);
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.modal-header {
+    border-bottom: 1px solid #f1f3f5;
+}
+.modal-footer {
+    border-top: 1px solid #f1f3f5;
+}
+
+/* Button overrides */
+.btn-primary-rose {
+    background-color: var(--primary-rose);
+    border-color: var(--primary-rose);
+    color: white;
+    font-weight: 600;
+}
+.btn-primary-rose:hover, .btn-primary-rose:focus {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    color: white;
+}
+.btn-outline-rose {
+    border-color: var(--primary-rose);
+    color: var(--primary-rose);
+    font-weight: 600;
+}
+.btn-outline-rose:hover {
+    background-color: var(--primary-rose);
+    color: white;
+}
+
+/* Print Invoice Styling */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #invoiceModal, #invoiceModal * {
+        visibility: visible;
+    }
+    #invoiceModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .modal-dialog {
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+    .modal-footer, .btn-close {
+        display: none !important;
+    }
+}
